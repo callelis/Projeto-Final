@@ -1,0 +1,36 @@
+<main class="login-page">
+	<app-menu />
+	<section class="login-content">
+		<div class="login-visual">
+			<img src="/img/obra4.jpg" alt="Obra de infraestrutura da TopEng" />
+			<div class="login-visual-overlay"></div>
+			<div class="login-visual-copy">
+				<span>TopEng Engenharia</span>
+				<h1>Pavimentando<br />os caminhos<br /><em>do futuro.</em></h1>
+			</div>
+		</div>
+		<div class="login-panel">
+			<p class="login-kicker">Área restrita</p>
+			<h2>Bem-vindo(a)!</h2>
+			<p class="login-intro">Se já trabalha conosco, informe seu login e senha para acessar a plataforma.</p>
+			<form (ngSubmit)="submitLogin()" #loginForm="ngForm">
+				<label for="login">Login</label>
+				<input id="login" name="login" [(ngModel)]="credentials.login" autocomplete="username" required />
+				<label for="password">Senha</label>
+				<input id="password" name="password" type="password" [(ngModel)]="credentials.password" autocomplete="current-password" required />
+				<label class="lgpd-check">
+					<input type="checkbox" name="lgpdAccepted" [(ngModel)]="credentials.lgpdAccepted" required />
+					<span>Li e estou ciente do <a href="https://www.gov.br/esporte/pt-br/acesso-a-informacao/lgpd" target="_blank" rel="noopener">informativo da LGPD</a>.</span>
+				</label>
+				@if (errorMessage) {
+					<p class="form-error" role="alert">{{ errorMessage }}</p>
+				}
+				@if (successMessage) {
+					<p class="form-success" role="status">{{ successMessage }}</p>
+				}
+				<button type="submit" [disabled]="loginForm.invalid">Confirmar acesso <span aria-hidden="true">↗</span></button>
+			</form>
+		</div>
+	</section>
+	<app-menu mode="footer" />
+</main>

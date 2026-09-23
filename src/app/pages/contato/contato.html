@@ -1,0 +1,38 @@
+<main class="contact-page">
+	<app-menu />
+	<section class="contact-content">
+		<div class="contact-heading">
+			<p>Fale com a gente</p>
+			<h1>Espaço para<br /><em>conversar.</em></h1>
+			<div class="contact-details">
+				<strong>TopEng Engenharia</strong>
+				<a href="tel:+557100000000">(71) 0000-0000</a>
+				<a href="mailto:ola@topeng.com.br">ola@topeng.com.br</a>
+			</div>
+		</div>
+		<div class="contact-grid">
+			<div class="map-frame">
+				<iframe title="Mapa da TopEng Engenharia" src="https://www.google.com/maps?q=R.%20do%20Zaire%20-%20Granjas%20Rurais%20Pres.%20Vargas,%20Salvador%20-%20BA,%2041230-060&output=embed" loading="lazy"></iframe>
+			</div>
+			<form (ngSubmit)="contactForm.resetForm()" #contactForm="ngForm">
+				<label for="subject">Assunto</label>
+				<select id="subject" name="subject" [(ngModel)]="contact.subject" required>
+					<option value="" disabled>Selecione uma opção</option>
+					<option>Trabalhe conosco</option>
+					<option>Sugestões e denúncias</option>
+					<option>Orçamentos</option>
+					<option>Outro</option>
+				</select>
+				<label for="name">Nome</label>
+				<input id="name" name="name" [(ngModel)]="contact.name" required />
+				<label for="email">E-mail</label>
+				<input id="email" name="email" type="email" [(ngModel)]="contact.email" required />
+				<label for="message">Mensagem</label>
+				<textarea id="message" name="message" rows="4" [(ngModel)]="contact.message" required></textarea>
+				<button type="submit" [disabled]="contactForm.invalid">Enviar mensagem ↗</button>
+			</form>
+		</div>
+		<p class="address">R. do Zaire - Granjas Rurais Pres. Vargas, Salvador - BA, 41230-060</p>
+	</section>
+	<app-menu mode="footer" />
+</main>

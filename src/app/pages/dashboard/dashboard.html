@@ -1,0 +1,28 @@
+<main class="dashboard-page">
+	<app-menu showWebmail showLogout />
+	<section class="dashboard-content">
+		<div class="dashboard-heading">
+			<p class="eyebrow">Área do colaborador</p>
+			<h1>Seu perfil</h1>
+			<p class="dashboard-intro">Acompanhe suas informações e organize as prioridades do dia.</p>
+		</div>
+		<div class="dashboard-grid">
+			<article class="profile-card">
+				<div class="profile-photo"><img [src]="isCarla ? '/img/CarlaLisboa.jpeg' : '/img/obra1.jpg'" [alt]="isCarla ? 'Foto de Carla Lisboa' : 'Imagem de perfil do usuário'" /></div>
+				<div>
+					<h2>{{ isCarla ? 'Carla Lisboa' : 'Administrador TopEng' }}</h2>
+					<p>{{ isCarla ? 'Engenheira de projetos' : 'Gestor de projetos' }}</p>
+				</div>
+			</article>
+			<article class="tasks-card">
+				<div class="card-heading"><span>Hoje</span><strong>03 tarefas</strong></div>
+				<ul>
+					<li [class.completed]="completedTasks[0]"><button class="task-check" type="button" aria-label="Concluir tarefa" [attr.aria-pressed]="completedTasks[0]" (click)="toggleTask(0)"></button><div><strong>Revisar cronograma de obras</strong><small>Prioridade alta · 09:00</small></div></li>
+					<li [class.completed]="completedTasks[1]"><button class="task-check" type="button" aria-label="Concluir tarefa" [attr.aria-pressed]="completedTasks[1]" (click)="toggleTask(1)"></button><div><strong>Validar relatório de campo</strong><small>Equipe de engenharia · 11:30</small></div></li>
+					<li [class.completed]="completedTasks[2]"><button class="task-check" type="button" aria-label="Concluir tarefa" [attr.aria-pressed]="completedTasks[2]" (click)="toggleTask(2)"></button><div><strong>Alinhar entregas da semana</strong><small>Reunião interna · 15:00</small></div></li>
+				</ul>
+			</article>
+		</div>
+	</section>
+	<app-menu mode="footer" />
+</main>

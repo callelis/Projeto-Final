@@ -1,0 +1,63 @@
+<main class="home-page">
+	<section class="hero" id="inicio">
+		<app-menu />
+		<div class="project-carousel" aria-label="Destaques de obras">
+			<div class="carousel-frame">
+				<img [src]="slides[currentSlide()].image" [alt]="slides[currentSlide()].alt" />
+				<div class="carousel-overlay"></div>
+				<div class="carousel-meta">
+					<span>Portfólio TopEng</span>
+					<strong>{{ slides[currentSlide()].caption }}</strong>
+				</div>
+				<div class="carousel-actions">
+					<button type="button" aria-label="Imagem anterior" (click)="previousSlide()">←</button>
+					<button type="button" aria-label="Próxima imagem" (click)="nextSlide()">→</button>
+				</div>
+			</div>
+			<div class="carousel-dots" role="tablist" aria-label="Selecionar obra">
+				@for (slide of slides; track slide.image; let index = $index) {
+					<button type="button" role="tab" [attr.aria-label]="'Ver obra ' + (index + 1)" [attr.aria-selected]="currentSlide() === index" [class.active]="currentSlide() === index" (click)="selectSlide(index)"></button>
+				}
+			</div>
+		</div>
+		<div class="hero-content">
+			<p class="eyebrow">Construção que atravessa gerações</p>
+			<h1>Estruturas para <em>transformar</em> o futuro.</h1>
+			<p class="hero-copy">Planejamos e construímos espaços sólidos, funcionais e duradouros para transformar cidades e melhorar a vida das pessoas.</p>
+			<a class="hero-link" href="#negocios">Conheça mais sobre nós <span>↘</span></a>
+		</div>
+		<div class="scroll-cue" aria-hidden="true"><span></span> role para explorar</div>
+	</section>
+
+	<section class="intro" id="sobre">
+		<div class="section-label">01 / sobre a TopEng</div>
+		<div class="about-content">
+			<h2>Solidez para<br />construir <em>histórias.</em></h2>
+			<p><strong>TopEng</strong> é sinônimo de solidez, tradição e credibilidade. Fundada em 1977, a empresa atua em diversos estados do Brasil, prestando serviços de reconhecida qualidade no ramo da construção pesada. A <strong>TopEng</strong> contribui para o desenvolvimento do país com obras de terraplenagem, pavimentação, infra-estrutura, saneamento, barragens, aeroportos e obras de arte especiais. Administrada por uma equipe de profissionais experientes, a empresa conta com equipamentos próprios e modernos, além de controlar uma pedreira comercial e uma incorporadora.</p>
+			<p>Utilizando métodos específicos e padronizados de trabalho, a <strong>TopEng</strong> recebeu as certificações <strong>ISO 9001:2000</strong> para obras rodoviárias e <strong>Qualiop Nível A</strong> nos setores de obras de urbanização, obras rodoviárias e saneamento. O compromisso com a satisfação do cliente e a pontualidade na entrega de suas obras, aliados ao respeito às normas de segurança do trabalho e preservação do meio ambiente, fazem com que a <strong>TopEng</strong> ocupe lugar de destaque no mercado brasileiro da construção civil e infra-estrutura em geral.</p>
+		</div>
+	</section>
+
+	<section class="metrics" id="negocios">
+		<div class="section-label">02 / em movimento</div>
+		<div class="metric-grid" id="investidores">
+			<article><strong>+12</strong><span>obras que<br />ganham forma</span></article>
+			<article><strong>100%</strong><span>compromisso<br />com cada detalhe</span></article>
+			<article><strong>360°</strong><span>visão completa<br />do seu projeto</span></article>
+		</div>
+		<div class="partners-intro">
+			<p class="section-label">03 / parcerias que constroem</p>
+			<h2>Investidores que acreditam<br />no nosso <em>trabalho.</em></h2>
+		</div>
+		<div class="partners-grid">
+			<article><div class="partner-image"><img src="/img/DNIT.jpg" alt="Logo DNIT" /></div><strong>DNIT</strong></article>
+			<article><div class="partner-image"><img src="/img/DERBA.png" alt="Logo DERBA" /></div><strong>DERBA</strong></article>
+			<article><div class="partner-image"><img src="/img/VALE.png" alt="Logo Vale" /></div><strong>VALE</strong></article>
+			<article><div class="partner-image"><img src="/img/PETROBRAS.png" alt="Logo Petrobras" /></div><strong>PETROBRAS</strong></article>
+			<article><div class="partner-image"><img src="/img/EMBASA.png" alt="Logo Embasa" /></div><strong>EMBASA</strong></article>
+			<article><div class="partner-image"><img src="/img/CODEBA.jpg" alt="Logo Codeba" /></div><strong>CODEBA</strong></article>
+		</div>
+	</section>
+
+	<app-menu mode="footer" />
+</main>

@@ -1,0 +1,142 @@
+.contact-page {
+	background: #4a211c;
+	color: #f9f8f2;
+	min-height: 100vh;
+}
+
+.contact-content {
+	margin: 70px auto 0;
+	max-width: 1176px;
+	padding: 0 32px;
+}
+
+.contact-page p {
+	color: #e7a260;
+	font: 0.7rem 'Trebuchet MS', sans-serif;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+}
+
+.contact-page h1 {
+	font: 400 clamp(3.5rem, 8vw, 7rem) / 0.9 Georgia, 'Times New Roman', serif;
+	letter-spacing: -0.05em;
+	margin: 20px 0 38px;
+}
+
+.contact-page em {
+	color: #e7a260;
+	font-style: italic;
+}
+
+.contact-page a {
+	color: #e7a260;
+	font: 1.2rem Georgia, 'Times New Roman', serif;
+	text-decoration: none;
+}
+
+.contact-details {
+	display: flex;
+	flex-direction: column;
+	font-family: 'Trebuchet MS', sans-serif;
+	gap: 8px;
+	margin-top: 35px;
+}
+
+.contact-details strong,
+.contact-details a {
+	font-size: 0.85rem;
+}
+
+.contact-grid {
+	display: grid;
+	gap: 22px;
+	grid-template-columns: 1.35fr 0.8fr;
+	margin-top: 55px;
+}
+
+.map-frame,
+.contact-grid form {
+	background: #efe5d6;
+	min-height: 350px;
+	padding: 12px;
+}
+
+.map-frame iframe {
+	border: 0;
+	height: 100%;
+	min-height: 326px;
+	width: 100%;
+}
+
+.contact-grid form {
+	display: flex;
+	flex-direction: column;
+	gap: 7px;
+}
+
+.contact-grid label {
+	color: #765e51;
+	font-size: 0.68rem;
+	letter-spacing: 0.09em;
+	margin-top: 7px;
+	text-transform: uppercase;
+}
+
+.contact-grid input,
+.contact-grid select,
+.contact-grid textarea {
+	background: #f9f5ee;
+	border: 1px solid #c19b84;
+	border-radius: 0;
+	color: #34201a;
+	font: 0.85rem 'Trebuchet MS', sans-serif;
+	padding: 10px;
+}
+
+.contact-grid button {
+	background: #b84836;
+	border: 0;
+	color: #f9f5ee;
+	cursor: pointer;
+	font: 0.72rem 'Trebuchet MS', sans-serif;
+	letter-spacing: 0.08em;
+	margin-top: 12px;
+	padding: 13px;
+	text-transform: uppercase;
+}
+
+.contact-grid button:disabled {
+	cursor: not-allowed;
+	opacity: 0.5;
+}
+
+.address {
+	color: #d0ad96;
+	font-size: 0.8rem;
+	line-height: 1.5;
+	margin: 18px 0 65px;
+}
+
+@media (max-width: 720px) {
+	.contact-content { margin-top: 45px; padding: 0 20px; }
+	.contact-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+	.contact-content {
+		padding: 0 16px;
+	}
+
+	.contact-page h1 {
+		font-size: clamp(3rem, 16vw, 4.5rem);
+	}
+
+	.map-frame,
+	.contact-grid form {
+		min-height: 300px;
+	}
+
+	.map-frame iframe {
+		min-height: 276px;
+	}
+}

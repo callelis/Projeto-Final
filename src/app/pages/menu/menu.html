@@ -1,0 +1,36 @@
+@if (mode() === 'header') {
+<header class="site-header" [class.dashboard-header]="showLogout()">
+	<a class="brand" routerLink="/" aria-label="TopEng Pavimentações - início">
+		<span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+		<span class="brand-name">TopEng<span>Pavimentações</span></span>
+	</a>
+
+	<nav class="main-nav" [class.is-open]="menuOpen()" aria-label="Navegação principal">
+		<a href="#sobre">Sobre</a>
+		<a href="#negocios">Negócios</a>
+		<a href="#investidores">Investidores</a>
+		<a routerLink="/contato">Contato</a>
+		@if (showWebmail()) {
+			<a href="https://webmail-seguro.com.br/" target="_blank" rel="noopener">Webmail ↗</a>
+		}
+		@if (showLogout()) {
+			<button class="logout-link" type="button" (click)="logout()">Logout</button>
+		}
+		@if (!showLogout()) {
+			<a class="login-link" routerLink="/login">Login <span aria-hidden="true">↗</span></a>
+		}
+	</nav>
+
+	<button class="menu-toggle" type="button" aria-label="Abrir menu" [attr.aria-expanded]="menuOpen()" (click)="toggleMenu()">
+		<span></span><span></span>
+	</button>
+</header>
+} @else {
+<footer class="site-footer">
+	<div><span class="footer-kicker">Vamos conversar?</span><a href="mailto:ola@topeng.com.br">ola@topeng.com.br ↗</a></div>
+	<div class="footer-legal">
+		<a class="lgpd-link" href="https://www.gov.br/esporte/pt-br/acesso-a-informacao/lgpd" target="_blank" rel="noopener">Informativo LGPD ↗</a>
+		<span class="copyright">© TOPENG · 2026</span>
+	</div>
+</footer>
+}
