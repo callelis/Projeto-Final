@@ -73,6 +73,19 @@
 	text-transform: uppercase;
 }
 
+.carousel-portfolio-link {
+	color: #e7a260;
+	font-size: 0.65rem;
+	letter-spacing: 0.16em;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+.carousel-portfolio-link:hover,
+.carousel-portfolio-link:focus-visible {
+	color: #f9f5ee;
+}
+
 .carousel-meta strong {
 	font-family: Georgia, 'Times New Roman', serif;
 	font-size: 1.45rem;
