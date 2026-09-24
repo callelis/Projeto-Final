@@ -2,7 +2,7 @@
 	<app-menu />
 	<section class="login-content">
 		<div class="login-visual">
-			<img src="/img/obra4.jpg" alt="Obra de infraestrutura da TopEng" />
+			<img src="/img/obra4.jpg" alt="Obra de infraestrutura da TopEng" fetchpriority="high" decoding="async" />
 			<div class="login-visual-overlay"></div>
 			<div class="login-visual-copy">
 				<span>TopEng Engenharia</span>
@@ -30,6 +30,16 @@
 				}
 				<button type="submit" [disabled]="loginForm.invalid">Confirmar acesso <span aria-hidden="true">↗</span></button>
 			</form>
+			<button class="forgot-link" type="button" (click)="toggleRecovery()">Esqueci minha senha</button>
+			@if (showRecovery) {
+				<form class="recovery-form" (ngSubmit)="recoverPassword()" #recoveryForm="ngForm">
+					<label for="recovery-email">E-mail cadastrado</label>
+					<input id="recovery-email" name="recoveryEmail" type="email" [(ngModel)]="recoveryEmail" required />
+					@if (recoveryError) { <p class="form-error" role="alert">{{ recoveryError }}</p> }
+					@if (recoverySuccess) { <p class="form-success" role="status">{{ recoverySuccess }}</p> }
+					<button type="submit" [disabled]="recoveryForm.invalid">Enviar senha <span aria-hidden="true">↗</span></button>
+				</form>
+			}
 		</div>
 	</section>
 	<app-menu mode="footer" />

@@ -21,6 +21,8 @@
 .form-success { color: #47704b; }
 .login-panel button { background: #b84836; border: 0; color: #f9f5ee; cursor: pointer; font: 0.72rem 'Trebuchet MS', sans-serif; letter-spacing: 0.08em; margin-top: 12px; padding: 14px; text-transform: uppercase; }
 .login-panel button:disabled { cursor: not-allowed; opacity: 0.5; }
+.forgot-link { background: transparent !important; color: #b84836 !important; margin-top: 17px !important; padding: 0 !important; text-align: left; text-transform: none !important; }
+.recovery-form { border-top: 1px solid #d9c4ae; margin-top: 18px; padding-top: 13px; }
 
 @media (max-width: 760px) {
 	.login-content { grid-template-columns: 1fr; margin-top: 35px; padding: 0 20px; }

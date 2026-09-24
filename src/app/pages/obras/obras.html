@@ -1,0 +1,64 @@
+<main class="obras-page">
+	<section class="obras-hero">
+		<app-menu />
+		<div class="obras-heading">
+			<p class="eyebrow">Portfólio TopEng</p>
+			<h1>Obras que deixam<br /><em>marcas.</em></h1>
+			<p class="hero-copy">Um panorama dos projetos que ajudaram a transformar cidades e conectar territórios.</p>
+		</div>
+	</section>
+
+	<section class="obras-dashboard">
+		<div class="dashboard-intro">
+			<div>
+				<p class="section-label">01 / visão geral</p>
+				<h2>Experiência em<br /><em>movimento.</em></h2>
+			</div>
+			<p class="intro-copy">Da preparação do solo à recuperação de grandes estruturas, cada obra reúne planejamento, técnica e compromisso com o território.</p>
+		</div>
+
+		<div class="obras-metrics" aria-label="Resumo das obras">
+			<article><strong>{{ totalWorks }}</strong><span>obras em destaque</span></article>
+			<article><strong>{{ categories.length }}</strong><span>frentes de atuação</span></article>
+			<article><strong>{{ locations }}</strong><span>localidades atendidas</span></article>
+		</div>
+
+		<div class="works-sections">
+			@for (category of categories; track category.name; let index = $index) {
+				<section class="works-section">
+					<div class="section-label">0{{ index + 2 }} / especialidade</div>
+					<div class="works-section-heading">
+						<h2>{{ category.name }}</h2>
+						<p>{{ category.description }}</p>
+					</div>
+					<div class="works-list">
+						@for (work of category.works; track work.name) {
+							<article class="work-item">
+								<button class="work-image-button" type="button" (click)="openImage(work)" [attr.aria-label]="'Ampliar imagem: ' + work.name">
+									<img class="work-image" [src]="work.image" [alt]="work.imageAlt" loading="lazy" decoding="async" />
+								</button>
+								<div class="work-index" aria-hidden="true">{{ $index + 1 | number:'2.0' }}</div>
+								<div><h3>{{ work.name }}</h3><p>{{ work.detail }}</p></div>
+								<strong>{{ work.location }}</strong>
+							</article>
+						}
+					</div>
+				</section>
+			}
+		</div>
+	</section>
+	@if (selectedWork) {
+		<div class="image-lightbox" role="presentation" (click)="closeImage()" (keydown.escape)="closeImage()">
+			<section class="lightbox-content" role="dialog" aria-modal="true" aria-labelledby="lightbox-title" (click)="$event.stopPropagation()">
+				<button class="lightbox-close" type="button" aria-label="Fechar imagem ampliada" (click)="closeImage()">×</button>
+				<img [src]="selectedWork.image" [alt]="selectedWork.imageAlt" decoding="async" />
+				<div class="lightbox-caption">
+					<p>{{ selectedWork.location }}</p>
+					<h2 id="lightbox-title">{{ selectedWork.name }}</h2>
+					<span>{{ selectedWork.detail }}</span>
+				</div>
+			</section>
+		</div>
+	}
+	<app-menu mode="footer" />
+</main>

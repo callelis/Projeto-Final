@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Menu } from '../menu/menu';
 
 @Component({
@@ -15,4 +15,9 @@ export class Contato {
      email: '',
      message: '',
   };
+
+  protected submitContact(form: NgForm): void {
+    console.info('TopEng: formulário de contato enviado', { ...this.contact });
+    form.resetForm();
+  }
 }

@@ -6,7 +6,7 @@
 			<h1>Espaço para<br /><em>conversar.</em></h1>
 			<div class="contact-details">
 				<strong>TopEng Engenharia</strong>
-				<a href="tel:+557100000000">(71) 0000-0000</a>
+				<a href="tel:+557121094949">+55 71 2109-4949</a>
 				<a href="mailto:ola@topeng.com.br">ola@topeng.com.br</a>
 			</div>
 		</div>
@@ -14,7 +14,7 @@
 			<div class="map-frame">
 				<iframe title="Mapa da TopEng Engenharia" src="https://www.google.com/maps?q=R.%20do%20Zaire%20-%20Granjas%20Rurais%20Pres.%20Vargas,%20Salvador%20-%20BA,%2041230-060&output=embed" loading="lazy"></iframe>
 			</div>
-			<form (ngSubmit)="contactForm.resetForm()" #contactForm="ngForm">
+			<form (ngSubmit)="submitContact(contactForm)" #contactForm="ngForm">
 				<label for="subject">Assunto</label>
 				<select id="subject" name="subject" [(ngModel)]="contact.subject" required>
 					<option value="" disabled>Selecione uma opção</option>

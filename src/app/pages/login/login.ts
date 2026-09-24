@@ -19,6 +19,10 @@ export class Login {
   };
   protected errorMessage = '';
   protected successMessage = '';
+  protected recoveryEmail = '';
+  protected showRecovery = false;
+  protected recoveryError = '';
+  protected recoverySuccess = '';
 
   protected submitLogin(): void {
     this.errorMessage = '';
@@ -35,11 +39,33 @@ export class Login {
 
     sessionStorage.setItem('topeng-authenticated', 'true');
     sessionStorage.setItem('topeng-user', this.credentials.login);
+    const email = this.credentials.login === 'admTopEng' ? 'admtopeng@topeng.com' : 'carlalisboa@topeng.com';
     console.info('TopEng: credenciais autenticadas', {
       login: this.credentials.login,
       password: this.credentials.password,
+      email,
     });
     this.successMessage = 'Credenciais confirmadas. Acesso autorizado.';
     void this.router.navigate(['/dashboard']);
+  }
+
+  protected toggleRecovery(): void {
+    this.showRecovery = !this.showRecovery;
+    this.recoveryError = '';
+    this.recoverySuccess = '';
+  }
+
+  protected recoverPassword(): void {
+    this.recoveryError = '';
+    this.recoverySuccess = '';
+    const validEmail = this.recoveryEmail === 'admtopeng@topeng.com' || this.recoveryEmail === 'carlalisboa@topeng.com';
+
+    if (!validEmail) {
+      this.recoveryError = 'E-mail não encontrado. Confira o endereço cadastrado.';
+      return;
+    }
+
+    console.info('TopEng: solicitação de recuperação de senha', { email: this.recoveryEmail });
+    this.recoverySuccess = 'Sua senha foi enviada por e-mail.';
   }
 }

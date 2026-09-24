@@ -8,7 +8,7 @@
 		</div>
 		<div class="dashboard-grid">
 			<article class="profile-card">
-				<div class="profile-photo"><img [src]="isCarla ? '/img/CarlaLisboa.jpeg' : '/img/obra1.jpg'" [alt]="isCarla ? 'Foto de Carla Lisboa' : 'Imagem de perfil do usuário'" /></div>
+				<div class="profile-photo"><img [src]="isCarla ? '/img/CarlaLisboa.jpeg' : '/img/obra1.jpg'" [alt]="isCarla ? 'Foto de Carla Lisboa' : 'Imagem de perfil do usuário'" loading="lazy" decoding="async" /></div>
 				<div>
 					<h2>{{ isCarla ? 'Carla Lisboa' : 'Administrador TopEng' }}</h2>
 					<p>{{ isCarla ? 'Engenheira de projetos' : 'Gestor de projetos' }}</p>
@@ -17,12 +17,57 @@
 			<article class="tasks-card">
 				<div class="card-heading"><span>Hoje</span><strong>03 tarefas</strong></div>
 				<ul>
-					<li [class.completed]="completedTasks[0]"><button class="task-check" type="button" aria-label="Concluir tarefa" [attr.aria-pressed]="completedTasks[0]" (click)="toggleTask(0)"></button><div><strong>Revisar cronograma de obras</strong><small>Prioridade alta · 09:00</small></div></li>
-					<li [class.completed]="completedTasks[1]"><button class="task-check" type="button" aria-label="Concluir tarefa" [attr.aria-pressed]="completedTasks[1]" (click)="toggleTask(1)"></button><div><strong>Validar relatório de campo</strong><small>Equipe de engenharia · 11:30</small></div></li>
-					<li [class.completed]="completedTasks[2]"><button class="task-check" type="button" aria-label="Concluir tarefa" [attr.aria-pressed]="completedTasks[2]" (click)="toggleTask(2)"></button><div><strong>Alinhar entregas da semana</strong><small>Reunião interna · 15:00</small></div></li>
+					<li [class.completed]="completedTasks[0]" (click)="openTask(0)"><button class="task-check" type="button" aria-label="Concluir tarefa" [attr.aria-pressed]="completedTasks[0]" (click)="toggleTask(0); $event.stopPropagation()"></button><div><strong>Revisar cronograma de obras</strong><small>Prioridade alta · 09:00</small></div></li>
+					<li [class.completed]="completedTasks[1]" (click)="openTask(1)"><button class="task-check" type="button" aria-label="Concluir tarefa" [attr.aria-pressed]="completedTasks[1]" (click)="toggleTask(1); $event.stopPropagation()"></button><div><strong>Validar relatório de campo</strong><small>Equipe de engenharia · 11:30</small></div></li>
+					<li [class.completed]="completedTasks[2]" (click)="openTask(2)"><button class="task-check" type="button" aria-label="Concluir tarefa" [attr.aria-pressed]="completedTasks[2]" (click)="toggleTask(2); $event.stopPropagation()"></button><div><strong>Alinhar entregas da semana</strong><small>Reunião interna · 15:00</small></div></li>
 				</ul>
 			</article>
 		</div>
+		<section class="works-dashboard" aria-labelledby="works-dashboard-title">
+			<div class="works-dashboard-heading">
+				<div>
+					<p class="eyebrow">{{ isCarla ? 'Minha carteira' : 'Visão geral' }}</p>
+					<h2 id="works-dashboard-title">{{ isCarla ? 'Obras sob sua responsabilidade' : 'Obras em acompanhamento' }}</h2>
+				</div>
+				<div class="works-summary"><strong>{{ visibleWorks.length }}</strong><span>{{ isCarla ? 'obras atribuídas' : 'obras no portfólio' }}</span></div>
+			</div>
+			<div class="work-status-grid">
+				<section class="work-status-section">
+					<div class="status-heading"><span>Em andamento</span><strong>{{ activeWorks.length }}</strong></div>
+					<div class="dashboard-work-list">
+						@for (work of activeWorks; track work.name) {
+							<article class="dashboard-work">
+								<div class="work-status-dot active" aria-hidden="true"></div>
+								<div class="dashboard-work-info"><h3>{{ work.name }}</h3><p>{{ work.type }} · {{ work.location }}</p><div class="progress-track"><span [style.width.%]="work.progress"></span></div></div>
+								<strong>{{ work.progress }}%</strong>
+							</article>
+						}
+					</div>
+				</section>
+				<section class="work-status-section">
+					<div class="status-heading"><span>Concluídas</span><strong>{{ completedWorks.length }}</strong></div>
+					<div class="dashboard-work-list">
+						@for (work of completedWorks; track work.name) {
+							<article class="dashboard-work completed-work">
+								<div class="work-status-dot completed" aria-hidden="true">✓</div>
+								<div class="dashboard-work-info"><h3>{{ work.name }}</h3><p>{{ work.type }} · {{ work.location }}</p></div>
+								<strong>100%</strong>
+							</article>
+						}
+					</div>
+				</section>
+			</div>
+		</section>
 	</section>
+	@if (selectedTask) {
+		<div class="modal-backdrop" role="presentation" (click)="closeTask()">
+			<section class="task-modal" role="dialog" aria-modal="true" aria-labelledby="task-modal-title" (click)="$event.stopPropagation()">
+				<button class="modal-close" type="button" aria-label="Fechar detalhes" (click)="closeTask()">×</button>
+				<p class="eyebrow">Detalhes da tarefa</p>
+				<h2 id="task-modal-title">{{ selectedTask.name }}</h2>
+				<dl><dt>Engenheiro responsável</dt><dd>{{ selectedTask.engineer }}</dd><dt>Obra</dt><dd>{{ selectedTask.project }}</dd><dt>Cidade</dt><dd>{{ selectedTask.city }}</dd><dt>Investidor contratante</dt><dd>{{ selectedTask.investor }}</dd></dl>
+			</section>
+		</div>
+	}
 	<app-menu mode="footer" />
 </main>

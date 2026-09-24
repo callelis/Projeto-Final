@@ -3,7 +3,7 @@
 		<app-menu />
 		<div class="project-carousel" aria-label="Destaques de obras">
 			<div class="carousel-frame">
-				<img [src]="slides[currentSlide()].image" [alt]="slides[currentSlide()].alt" />
+				<img [src]="slides[currentSlide()].image" [alt]="slides[currentSlide()].alt" fetchpriority="high" decoding="async" />
 				<div class="carousel-overlay"></div>
 				<div class="carousel-meta">
 					<span>Portfólio TopEng</span>
@@ -35,6 +35,25 @@
 			<h2>Solidez para<br />construir <em>histórias.</em></h2>
 			<p><strong>TopEng</strong> é sinônimo de solidez, tradição e credibilidade. Fundada em 1977, a empresa atua em diversos estados do Brasil, prestando serviços de reconhecida qualidade no ramo da construção pesada. A <strong>TopEng</strong> contribui para o desenvolvimento do país com obras de terraplenagem, pavimentação, infra-estrutura, saneamento, barragens, aeroportos e obras de arte especiais. Administrada por uma equipe de profissionais experientes, a empresa conta com equipamentos próprios e modernos, além de controlar uma pedreira comercial e uma incorporadora.</p>
 			<p>Utilizando métodos específicos e padronizados de trabalho, a <strong>TopEng</strong> recebeu as certificações <strong>ISO 9001:2000</strong> para obras rodoviárias e <strong>Qualiop Nível A</strong> nos setores de obras de urbanização, obras rodoviárias e saneamento. O compromisso com a satisfação do cliente e a pontualidade na entrega de suas obras, aliados ao respeito às normas de segurança do trabalho e preservação do meio ambiente, fazem com que a <strong>TopEng</strong> ocupe lugar de destaque no mercado brasileiro da construção civil e infra-estrutura em geral.</p>
+			<div class="about-subsections">
+				<section>
+					<h3>Responsabilidade ambiental</h3>
+					<ul>
+						<li>Utilização do sistema de coleta seletiva de lixo.</li>
+						<li>Realização de treinamentos informativos para os funcionários quanto a importância da sustentabilidade.</li>
+						<li>Dar preferência para a compra de produtos de empresas que também sigam os princípios da sustentabilidade.</li>
+						<li>Utilizar, sempre que possível, fontes de energia limpas e renováveis em nosso processo operacional.</li>
+						<li>Nunca adotar ações que possam provocar danos ao meio ambiente, como por exemplo, poluição de rios e desmatamento.</li>
+						<li>Promover a economia de energia elétrica e o consumo de água em todas as unidades da TOP Engenharia.</li>
+						<li>Utilização de tecnologias que visem diminuir o volume de impressões e conseqüentemente o volume de papéis utilizados.</li>
+						<li>Substituição dos copos plásticos descartáveis por canecas confeccionadas com materiais reciclados.</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Política de qualidade e segurança do trabalho</h3>
+					<p>Garantimos a execução de obras com qualidade, prazo e responsabilidade, atendendo aos requisitos dos clientes e à legislação aplicável. Trabalhamos para prevenir acidentes, preservar a saúde das equipes e aprimorar continuamente nossos processos por meio de treinamento, planejamento, inspeções e participação de todos os colaboradores.</p>
+				</section>
+			</div>
 		</div>
 	</section>
 
@@ -49,13 +68,22 @@
 			<p class="section-label">03 / parcerias que constroem</p>
 			<h2>Investidores que acreditam<br />no nosso <em>trabalho.</em></h2>
 		</div>
-		<div class="partners-grid">
-			<article><div class="partner-image"><img src="/img/DNIT.jpg" alt="Logo DNIT" /></div><strong>DNIT</strong></article>
-			<article><div class="partner-image"><img src="/img/DERBA.png" alt="Logo DERBA" /></div><strong>DERBA</strong></article>
-			<article><div class="partner-image"><img src="/img/VALE.png" alt="Logo Vale" /></div><strong>VALE</strong></article>
-			<article><div class="partner-image"><img src="/img/PETROBRAS.png" alt="Logo Petrobras" /></div><strong>PETROBRAS</strong></article>
-			<article><div class="partner-image"><img src="/img/EMBASA.png" alt="Logo Embasa" /></div><strong>EMBASA</strong></article>
-			<article><div class="partner-image"><img src="/img/CODEBA.jpg" alt="Logo Codeba" /></div><strong>CODEBA</strong></article>
+		<div class="investor-carousel">
+			<button class="investor-arrow investor-arrow-previous" type="button" aria-label="Investidor anterior" (click)="previousInvestor()">←</button>
+			<div class="investor-stage">
+				@for (investor of investorSlides; track investor.image; let index = $index) {
+					<article class="investor-frame" [class.active]="investorPosition(index) === 'active'" [class.previous]="investorPosition(index) === 'previous'" [class.next]="investorPosition(index) === 'next'" [class.hidden]="investorPosition(index) === 'hidden'">
+						<div class="partner-image"><img [src]="investor.image" [alt]="investor.alt" loading="lazy" decoding="async" /></div>
+						<strong>{{ investor.caption }}</strong>
+					</article>
+				}
+			</div>
+			<button class="investor-arrow investor-arrow-next" type="button" aria-label="Próximo investidor" (click)="nextInvestor()">→</button>
+			<div class="carousel-dots" role="tablist" aria-label="Selecionar investidor">
+				@for (investor of investorSlides; track investor.image; let index = $index) {
+					<button type="button" role="tab" [attr.aria-label]="'Ver investidor ' + (index + 1)" [attr.aria-selected]="investorSlide() === index" [class.active]="investorSlide() === index" (click)="selectInvestor(index)"></button>
+				}
+			</div>
 		</div>
 	</section>
 

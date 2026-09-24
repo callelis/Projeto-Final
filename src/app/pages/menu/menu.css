@@ -209,7 +209,14 @@
 
 @media (max-width: 720px) {
 	.site-header {
+		justify-content: center;
 		padding: 22px 20px;
+	}
+
+	.brand {
+		left: 50%;
+		position: absolute;
+		transform: translateX(-50%);
 	}
 
 	.main-nav {
@@ -229,8 +236,31 @@
 		top: 76px;
 	}
 
+	.main-nav.is-open a,
+	.dashboard-header .main-nav.is-open a,
+	.main-nav.is-open .logout-link,
+	.dashboard-header .main-nav.is-open .logout-link {
+		color: #f9f5ee;
+	}
+
+	.main-nav.is-open a:hover,
+	.main-nav.is-open a:focus-visible,
+	.main-nav.is-open .logout-link:hover,
+	.main-nav.is-open .logout-link:focus-visible {
+		color: #e7a260;
+	}
+
+	.main-nav.is-open .login-link,
+	.dashboard-header .main-nav.is-open .login-link {
+		border-color: #e7a260;
+		color: #e7a260;
+	}
+
 	.menu-toggle {
 		display: block;
+		left: 12px;
+		position: absolute;
+		top: 19px;
 	}
 
 	.site-footer {
