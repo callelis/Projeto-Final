@@ -10,7 +10,8 @@ export const routes: Routes = [
 	{ path: '', component: Home },
 	{ path: 'contato', component: Contato },
 	{ path: 'login', component: Login },
-	{ path: 'obras', component: Obras },
+	{ path: 'TopEng', component: Obras },
+	{ path: 'obras', redirectTo: 'TopEng', pathMatch: 'full' },
 	{ path: 'dashboard', component: Dashboard, canActivate: [authGuard] },
 	{ path: '**', redirectTo: '' },
 ];
